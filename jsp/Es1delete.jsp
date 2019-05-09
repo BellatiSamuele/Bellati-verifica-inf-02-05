@@ -12,8 +12,7 @@
     </head>
     <body>
      <% 
-     String username = request.getParameter("username");
-     String password = request.getParameter("psw");
+     String idevento = request.getParameter("IDevento");
      %>
         <% 
             String connectionUrl = "jdbc:sqlserver://213.140.22.237\\SQLEXPRESS:1433;databaseName=XFactor;user=bellati.samuele;password=xxx123#";
@@ -23,30 +22,11 @@
             Connection connection = DriverManager.getConnection(connectionUrl);
 			
 			//preparedStatement
-			String sql = "SELECT * FROM Cittadino WHERE username = ? AND password = ?";
+			String sql = "DELETE FROM Evento WHERE IDEvento = ?";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			
-			pstmt.setString(1, username);
-			pstmt.setString(2, password);
-			ResultSet rs = pstmt.executeQuery();
-
-	        if(rs.next()){
-	            out.println("Login effettuato");
-	            
-	            String sql1 = "SELECT Evento.nome, Evento.ID FROM Comunicazione INNER JOIN Evento ON Comunicazione.IDE = Evento.ID INNER JOIN Cittadino ON Comunicazione.IDC = Cittadino.ID WHERE username = ?";
-	            
-	            PreparedStatement stmtRicerca = connection.prepareStatement(sql1);
-                stmtRicerca.setString(1, username);
-                ResultSet rsRicerca = stmtRicerca.executeQuery();
-	            
-	        while(rsRicerca.next()){
-	            String nome = rsRicerca.getString("nome");
-	            out.println("<ul><li><a href= /jsp/Es1delete.jsp?IDevento=" + rsRicerca.getString("ID") + ">" + nome + "</a></li></ul>");
-	        }
-	           
-	        }else{
-	            out.println("fallito");
-	        }
+			pstmt.setString(1, idevento);
+			
 	        connection.close();
         %>
     </body>
