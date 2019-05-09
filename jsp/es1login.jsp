@@ -32,7 +32,8 @@
 
 	        if(rs.next()){
 	            out.println("Login effettuato");
-	            String sql1 = "select nome from Evento inner join Cittadino on Cittadino.id = Evento.id";
+	            
+	          /*String sql1 = "select nome from Evento inner join Cittadino on Cittadino.id = Evento.id";
 	            PreparedStatement stmtRicerca = connection.prepareStatement(sql1);
                 stmtRicerca.setString(1, username);
                 ResultSet rsRicerca = stmtRicerca.executeQuery();
@@ -53,12 +54,12 @@
                     </tbody>
                   </table border: 1px solid black;>
     
-                  <%
+                  <%*/
+	           
 	        }else{
 	            out.println("fallito");
 	        }
 	        connection.close();
-
         %>
     </body>
 </html>
