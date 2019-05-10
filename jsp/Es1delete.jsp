@@ -28,7 +28,10 @@
 			
 			pstmt.setString(1, idevento);
 		
+		    pstmt.executeUpdate();
+		
 		    response.sendRedirect("../html/es1login.html");
+		    
 			
 	        connection.close();
         %>
