@@ -29,11 +29,11 @@
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
 			ResultSet rs = pstmt.executeQuery();
-
+			
 	        if(rs.next()){
 	            out.println("Login effettuato");
 	            
-	            String sql1 = "SELECT Evento.nome, Evento.ID FROM Comunicazione INNER JOIN Evento ON Comunicazione.IDE = Evento.ID INNER JOIN Cittadino ON Comunicazione.IDC = Cittadino.ID WHERE username = ?";
+	            String sql1 = "SELECT Evento.nome, Evento.ID, Comunicazione.IDC, Cittadino.ID FROM Comunicazione INNER JOIN Evento ON Comunicazione.IDE = Evento.ID INNER JOIN Cittadino ON Comunicazione.IDC = Cittadino.ID WHERE Username = ?";
 	            
 	            PreparedStatement stmtRicerca = connection.prepareStatement(sql1);
                 stmtRicerca.setString(1, username);
@@ -41,8 +41,8 @@
 	            
 	        while(rsRicerca.next()){
 	            String nome = rsRicerca.getString("nome");
-	            out.println("<ul><li><a href= /jsp/Es1delete.jsp?ID=" + rsRicerca.getString("ID") + ">" + nome + "</a></li></ul>");
-	        }
+	            out.println("<ul><li><a href= /jsp/Es1delete.jsp?ID=" + rsRicerca.getString("ID") + "&NomeEvento=" + nome + "&Username="+ rs.getString("Username") + "&IDCitt="+ rs.getString("IDC") + ">" + "</a></li></ul>");
+	           }
 	           
 	        }else{
 	            out.println("fallito");
