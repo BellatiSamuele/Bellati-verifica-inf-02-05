@@ -13,6 +13,7 @@
     <body>
      <% 
      String idevento = request.getParameter("IDevento");
+     String username = request.getParameter("username");
      %>
         <% 
             String connectionUrl = "jdbc:sqlserver://213.140.22.237\\SQLEXPRESS:1433;databaseName=XFactor;user=bellati.samuele;password=xxx123#";
@@ -26,6 +27,8 @@
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			
 			pstmt.setString(1, idevento);
+		
+		    response.sendRedirect("../html/es1login.html");  
 			
 	        connection.close();
         %>
