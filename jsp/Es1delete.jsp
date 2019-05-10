@@ -12,7 +12,7 @@
     </head>
     <body>
      <% 
-     String idevento = request.getParameter("IDevento");
+     String idevento = request.getParameter("ID");
      String username = request.getParameter("username");
      %>
         <% 
@@ -23,12 +23,12 @@
             Connection connection = DriverManager.getConnection(connectionUrl);
 			
 			//preparedStatement
-			String sql = "DELETE FROM Evento WHERE IDEvento = ?";
+			String sql = "DELETE FROM Evento WHERE ID = ?";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			
 			pstmt.setString(1, idevento);
 		
-		    response.sendRedirect("../html/es1login.html");  
+		    response.sendRedirect("../html/es1login.html");
 			
 	        connection.close();
         %>
