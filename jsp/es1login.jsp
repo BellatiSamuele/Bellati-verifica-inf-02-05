@@ -41,7 +41,7 @@
 	            
 	        while(rsRicerca.next()){
 	            String nome = rsRicerca.getString("nome");
-	            out.println("<ul><li><a href= /jsp/Es1delete.jsp?ID=" + rsRicerca.getString("ID") + "&NomeEvento=" + nome + "&Username="+ rs.getString("Username") + "&IDCitt="+ rs.getString("IDC") + ">" + "</a></li></ul>");
+	            out.println("<ul><li><a href= /jsp/Es1delete.jsp?ID=" + rsRicerca.getString("ID") + " >" + nome + "</a></li></ul>");
 	           }
 	           
 	        }else{

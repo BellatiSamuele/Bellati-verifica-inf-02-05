@@ -8,13 +8,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Delete</title>
+        <title>CARICA</title>
     </head>
     <body>
      <% 
-     String idevento = request.getParameter("ID");
-     String username = request.getParameter("username");
-     String idcittadino = request.getParameter("IDCitt");
+     int id = Integer.parseInt(request.getParameter("id"));
+     String nome = request.getParameter("nome");
+     String descrizione = request.getParameter("descrizione");
+     String data = request.getParameter("data");
      %>
         <% 
             String connectionUrl = "jdbc:sqlserver://213.140.22.237\\SQLEXPRESS:1433;databaseName=XFactor;user=bellati.samuele;password=xxx123#";
@@ -24,28 +25,17 @@
             Connection connection = DriverManager.getConnection(connectionUrl);
 			
 			//preparedStatement
-			String sql2 = "SELECT COUNT (IDE) FROM Comunicazione WHERE IDE = ? AND IDC = ?";
-			PreparedStatement pstmt2 = connection.prepareStatement(sql2);
-			pstmt2.setString(1, idevento);
-			pstmt2.setString(2, idcittadino);
-			
-			ResultSet rs = pstmt2.executeQuery();
-			
-			if(rs.next()){
-			    
-			String sql = "DELETE FROM Evento WHERE ID = ?";
+			String sql = "INSERT INTO Evento (id, nome, descrizione, data) VALUES (?, ?, ?, ?);";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			
-			pstmt.setString(1, idevento);
+			pstmt.setInt(1, id);
+			pstmt.setString(2, nome);
+			pstmt.setString(3, descrizione);
+			pstmt.setString(4, data);
+			pstmt.executeUpdate();
 		
-		    pstmt.executeUpdate();
-		    
-		    response.sendRedirect("../html/es1login.html");
-		
-			}else{
-			    out.print("problem");
-			}
-			
+	        out.println("evento inserito");
+
 	        connection.close();
         %>
     </body>
